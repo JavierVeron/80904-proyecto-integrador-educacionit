@@ -1,0 +1,33 @@
+<?php
+function getCarousel() {
+    $slides = ["slide1.webp", "slide2.webp", "slide3.webp"];
+    $output = '<div class="container my-5">
+    <div class="row">
+        <div class="col">
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                ';
+
+                for ($i=0; $i<count($slides); $i++) {
+                    $output .= '<div class="carousel-item active">
+                        <img src="../assets/carousel/' .$slides[$i] .'" class="d-block w-100" alt="Slide">
+                </div>
+                ';
+                }
+                    
+                $output .= '</div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+    ';
+    echo $output;
+}
