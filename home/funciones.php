@@ -1,6 +1,6 @@
 <?php
 function getPromo() {
-    $output = "<div class='container-fluid text-white bg-dark py-3 text-center fw-bold fs-6'>💵 HASTA 6 CUOTAS SIN INTERESES 💵</div>";
+    $output = "<div class='container-fluid text-white bg-dark py-2 text-center fw-bold fs-6'>💵 HASTA 6 CUOTAS SIN INTERESES 💵</div>";
 
     echo $output;
 }
