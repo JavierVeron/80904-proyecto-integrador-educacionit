@@ -1,10 +1,13 @@
 <?php
 include("../shared/template_header.php");
-include("../navbar.php");
 include("./funciones.php");
+getPromo();
+
+include("../navbar.php");
+include("productos.php");
 
 getCarousel();
-
+getProductos($productos);
 
 include("../shared/template_footer.php");
 ?>

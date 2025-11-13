@@ -1,4 +1,10 @@
 <?php
+function getPromo() {
+    $output = "<div class='container-fluid text-white bg-dark py-3 text-center fw-bold fs-6'>💵 HASTA 6 CUOTAS SIN INTERESES 💵</div>";
+
+    echo $output;
+}
+
 function getCarousel() {
     $slides = ["slide1.webp", "slide2.webp", "slide3.webp"];
     $output = '<div class="container my-5">
@@ -27,7 +33,28 @@ function getCarousel() {
             </div>
         </div>
     </div>
-    </div>
-    ';
+    </div>';
     echo $output;
+}
+
+function getProductos($productos) {
+    $output = '<div class="container my-5">';
+    $output .= '<div class="row">';
+
+    foreach ($productos as $producto) {
+        $output .= '<div class="col-md-3">
+        <div class="card">
+        <img src="' .$producto["imagen"] .'" class="card-img-top" alt="' .$producto["nombre"] .'" />
+        <div class="card-body">
+            <h6 class="card-title fw-bold">$' .$producto["precio"] .'</h6>
+            <p class="card-text fw-light">' .$producto["nombre"] .'</p>
+        </div>
+        </div>
+        </div>';
+    }
+
+    $output .= '</div>';
+    $output .= '</div>';
+    
+    echo $output; 
 }
