@@ -43,6 +43,7 @@ function getProductos($productos) {
 
     foreach ($productos as $producto) {
         $output .= '<div class="col-md-3">
+        <a href="../detail/index.php?id=' .$producto["id"] .'" class="text-decoration-none">
         <div class="card">
         <img src="' .$producto["imagen"] .'" class="card-img-top" alt="' .$producto["nombre"] .'" />
         <div class="card-body">
@@ -50,6 +51,7 @@ function getProductos($productos) {
             <p class="card-text fw-light">' .$producto["nombre"] .'</p>
         </div>
         </div>
+        </a>
         </div>';
     }
 

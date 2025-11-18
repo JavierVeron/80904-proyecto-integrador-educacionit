@@ -4,7 +4,7 @@ include("./funciones.php");
 getPromo();
 
 include("../navbar.php");
-include("productos.php");
+include("../assets/productos.php");
 
 getCarousel();
 getProductos($productos);

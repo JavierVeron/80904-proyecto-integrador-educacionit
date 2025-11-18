@@ -1,0 +1,31 @@
+<?php
+include("../shared/template_header.php");
+include("../home/funciones.php");
+getPromo();
+
+include("../navbar.php");
+include("../assets/productos.php");
+include("funciones.php");
+
+$id = $_GET["id"];
+$producto = getProducto($id);
+?>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-4 offset-md-2">
+            <img src="<?php echo $producto["imagen"]; ?>" alt="<?php echo $producto["nombre"]; ?>" class="img-fluid" />
+        </div>
+        <div class="col-md-4">
+            <h1><?php echo $producto["nombre"]; ?></h1>
+            <p><b>$ <?php echo $producto["precio"]; ?></b></p>
+            <p><?php echo $producto["descripcion"]; ?></p>
+            <p><b>Categoría:</b> <span class="fw-light text-uppercase"><?php echo $producto["categoria"]; ?></span></p>
+            <p><button class="btn btn-dark text-white rounded-0 fw-bold pe-5">Añadir al Carrito</button></p>
+        </div>
+    </div>
+</div>
+
+<?php
+include("../shared/template_footer.php");
+?>
