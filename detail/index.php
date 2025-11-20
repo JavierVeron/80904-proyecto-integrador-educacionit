@@ -3,6 +3,7 @@ include("../shared/template_header.php");
 include("../home/funciones.php");
 getPromo();
 
+include("../config.php");
 include("../navbar.php");
 include("../assets/productos.php");
 include("funciones.php");
@@ -21,7 +22,7 @@ $producto = getProducto($id);
             <p><b>$ <?php echo $producto["precio"]; ?></b></p>
             <p><?php echo $producto["descripcion"]; ?></p>
             <p><b>Categoría:</b> <span class="fw-light text-uppercase"><?php echo $producto["categoria"]; ?></span></p>
-            <p><button class="btn btn-dark text-white rounded-0 fw-bold pe-5">Añadir al Carrito</button></p>
+            <p><button class="btn btn-dark text-white rounded-0 fw-bold"><span class="me-5">Añadir al Carrito</span> <i class="bi bi-bag-plus ms-5"></i></button></p>
         </div>
     </div>
 </div>

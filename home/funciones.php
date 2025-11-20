@@ -37,21 +37,36 @@ function getCarousel() {
     echo $output;
 }
 
-function getProductos($productos) {
+function getProductos($productos, $filtrar, $promo) {
+    if ($filtrar && $promo) {
+        $productos = array_filter($productos, fn($item) => $item["categoria"] == $filtrar && $item["promo"]);
+    } else if ($filtrar && !$promo) {
+        $productos = array_filter($productos, fn($item) => $item["categoria"] == $filtrar);
+    } else if (!$filtrar && $promo) {
+        $productos = array_filter($productos, fn($item) => $item["promo"]);
+    }
+
     $output = '<div class="container my-5">';
     $output .= '<div class="row">';
 
-    foreach ($productos as $producto) {
-        $output .= '<div class="col-md-3">
-        <a href="../detail/index.php?id=' .$producto["id"] .'" class="text-decoration-none">
-        <div class="card">
-        <img src="' .$producto["imagen"] .'" class="card-img-top" alt="' .$producto["nombre"] .'" />
-        <div class="card-body">
-            <h6 class="card-title fw-bold">$' .$producto["precio"] .'</h6>
-            <p class="card-text fw-light">' .$producto["nombre"] .'</p>
-        </div>
-        </div>
-        </a>
+    if (count($productos) > 0) {
+        foreach ($productos as $producto) {
+            $output .= '<div class="col-md-3">
+            <a href="../detail/index.php?id=' .$producto["id"] .'" class="text-decoration-none">
+            <div class="card">
+            <img src="' .$producto["imagen"] .'" class="card-img-top" alt="' .$producto["nombre"] .'" />
+            <div class="card-body">
+                <h6 class="card-title fw-bold">$' .$producto["precio"] .'</h6>
+                <p class="card-text fw-light">' .$producto["nombre"] .'</p>
+            </div>
+            </div>
+            </a>
+            </div>';
+        }
+    } else {
+        $output .= '<div class="col text-center my-5">
+        <h1 class="fw-bold">Error!</h1>
+        <h3 class="fw-light">No se encontraron Productos con ese filtro!</h3>
         </div>';
     }
 
