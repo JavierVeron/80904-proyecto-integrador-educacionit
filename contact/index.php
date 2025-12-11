@@ -1,10 +1,10 @@
 <?php
-include("../shared/template_header.php");
-include("../home/funciones.php");
+include_once("../shared/template_header.php");
+include_once("../home/funciones.php");
 getPromo();
 
-include("../config.php");
-include("../navbar.php");
+include_once("../config.php");
+include_once("../navbar.php");
 ?>
 
 <div class="container my-5">
@@ -35,5 +35,5 @@ include("../navbar.php");
 </div>
 
 <?php
-include("../shared/template_footer.php");
+include_once("../shared/template_footer.php");
 ?>

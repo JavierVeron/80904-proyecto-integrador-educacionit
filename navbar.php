@@ -1,3 +1,7 @@
+<?php
+include_once("cart/funciones.php");
+?>
+
 <div class="container my-5">
     <div class="row">
         <div class="col-md-3">
@@ -31,10 +35,10 @@
             <button class="btn btn-light mx-1" title="Registrarte">
                 <i class="bi bi-person-plus"></i>
             </button>
-            <button type="button" class="btn btn-light position-relative">
+            <a href="<?php echo $url_base; ?>/cart" class="btn btn-light position-relative">
                 <i class="bi bi-cart"></i>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
-            </button>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><?php echo getCantidadProductosCarrito(); ?></span>
+            </a>
         </div>
     </div>
 </div>
