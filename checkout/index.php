@@ -19,8 +19,6 @@ include_once("funciones.php");
             <table class="table">
                 <tbody>
                     <?php
-                    $sumaTotal = 0;
-
                     foreach(getCarrito() as $item) {
                         $producto_encontrado;
                         
@@ -32,21 +30,14 @@ include_once("funciones.php");
                         }
                         
                         echo "<tr>";
-                        echo "<td><img src='" .$producto_encontrado["imagen"] ."' border='0' width='80' /></td>";
-                        echo "<td class='align-middle'>" .$producto_encontrado["nombre"] ."</td>";
-                        echo "<td class='align-middle'>$" .$producto_encontrado["precio"] ."</td>";
+                        echo "<td><img src='" .$producto["imagen"] ."' border='0' width='80' /></td>";
+                        echo "<td class='align-middle'>" .$producto["nombre"] ."</td>";
+                        echo "<td class='align-middle'>$" .$producto["precio"] ."</td>";
                         echo "<td class='align-middle'>x" .$item["cantidad"] ."</td>";
-                        echo "<td class='align-middle'>$" .($item["cantidad"] * $producto_encontrado["precio"]) ."</td>";
-                        echo "<td class='align-middle'><button class='btn btn-danger btn-sm'>Eliminar</button></td>";
+                        echo "<td class='align-middle'>$" .($item["cantidad"] * $producto["precio"]) ."</td>";
                         echo "</tr>";
-                        $sumaTotal += ($item["cantidad"] * $producto_encontrado["precio"]);
                     }
                     ?>
-                    <tr>
-                        <td colspan={7}><b>Suma Total a Pagar</b><td>
-                        <td>$<b><?php echo $sumaTotal; ?></b></td>
-                        <td class="align-middle text-end"><a href="<?php echo $url_base; ?>/checkout" class="btn btn-danger btn-sm">Checkout</a></button>
-                    </tr>
                 </tbody>
             </table>            
             <?php
