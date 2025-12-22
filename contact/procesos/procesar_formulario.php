@@ -24,7 +24,7 @@ fclose($archivo);
         <div class="col-md-8">
             <h1 class="fw-bold">Gracias!</h1>
             <h3 class="fw-bold">Tu consulta se ha enviado correctamente!</h3>
-            <p class="my-5"><a href="<?php echo $url_base; ?>/" class="btn btn-dark text-white rounded-0 fw-bold">Volver a la Página Principal</a></p>
+            <p class="my-5"><a href="<?php echo URL_BASE; ?>/" class="btn btn-dark text-white rounded-0 fw-bold">Volver a la Página Principal</a></p>
         </div>
         <div class="col-md-4">
             <img src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/6366423_CAM_LAM_DAT_ONSITE_YGT_WORLD_CUP_26_JERSEYS_FW_25_LAM_ARG_DELIV_1_SPOTLIGHT_768x1024_1a64d690e9.jpg" alt="Lionel Messi" class="img-fluid">

@@ -19,8 +19,6 @@ include_once("funciones.php");
             <table class="table">
                 <tbody>
                     <?php
-                    $sumaTotal = 0;
-
                     foreach(getCarrito() as $item) {
                         $producto_encontrado;
                         
@@ -37,15 +35,14 @@ include_once("funciones.php");
                         echo "<td class='align-middle'>$" .$producto_encontrado["precio"] ."</td>";
                         echo "<td class='align-middle'>x" .$item["cantidad"] ."</td>";
                         echo "<td class='align-middle'>$" .($item["cantidad"] * $producto_encontrado["precio"]) ."</td>";
-                        echo "<td class='align-middle'><button class='btn btn-danger btn-sm'>Eliminar</button></td>";
+                        echo "<td class='align-middle text-end'><button class='btn btn-danger btn-sm'>Eliminar</button></td>";
                         echo "</tr>";
-                        $sumaTotal += ($item["cantidad"] * $producto_encontrado["precio"]);
                     }
                     ?>
                     <tr>
-                        <td colspan={7}><b>Suma Total a Pagar</b><td>
-                        <td>$<b><?php echo $sumaTotal; ?></b></td>
-                        <td class="align-middle text-end"><a href="<?php echo $url_base; ?>/checkout" class="btn btn-danger btn-sm">Checkout</a></button>
+                        <td colspan="3"><b>Suma Total a Pagar</b><td>
+                        <td><b>$<?php echo getSumaProductosCarrito($productos); ?></b></td>
+                        <td class="align-middle text-end"><a href="<?php echo URL_BASE; ?>/checkout" class="btn btn-danger btn-sm">Checkout</a></td>
                     </tr>
                 </tbody>
             </table>            

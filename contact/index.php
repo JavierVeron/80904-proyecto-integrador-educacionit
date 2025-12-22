@@ -11,7 +11,7 @@ include_once("../navbar.php");
     <div class="row d-flex justify-content-center">
         <div class="col-md-6">
             <h1 class="text-center fw-bold mb-5">Formulario de Contacto</h1>
-            <form method="post" action="<?php echo $url_base; ?>/contact/procesos/procesar_formulario.php">
+            <form method="post" action="<?php echo URL_BASE; ?>/contact/procesos/procesar_formulario.php">
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" required />
