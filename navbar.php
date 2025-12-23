@@ -41,4 +41,14 @@ include_once("cart/funciones.php");
             </a>
         </div>
     </div>
+    <div class="row">
+        <div class="col text-center">
+            <form method="GET" action="<?php echo URL_BASE; ?>/shop">
+                <div class="input-group mt-3">
+                <input type="text" class="form-control" placeholder="Buscar..." id="texto" name="texto" />
+                <button class="input-group-text" type="submit"><i class="bi bi-search"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

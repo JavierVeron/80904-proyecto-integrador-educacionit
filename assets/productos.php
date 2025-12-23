@@ -20,7 +20,7 @@ $productos = [
     ],
     [
         "id" => 3,
-        "nombre" => "ZAPATILLAS SUPERSTAR II",
+        "nombre" => "Zapatillas SUPERSTAR II",
         "precio" => 189999,
         "descripcion" => "Zapatillas icónicas con detalles de tejido denim únicos que marcan la diferencia.",
         "imagen" => "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/719d001264c64cc39dd28fd1ec497b28_9366/ZAPATILLAS_SUPERSTAR_II_Gris_KI8492_01_00_standard.jpg",
