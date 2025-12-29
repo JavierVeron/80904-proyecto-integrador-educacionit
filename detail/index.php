@@ -5,7 +5,6 @@ getPromo();
 
 include_once("../config.php");
 include_once("../navbar.php");
-include_once("../assets/productos.php");
 include_once("funciones.php");
 
 $id = $_GET["id"];

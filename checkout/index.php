@@ -5,7 +5,6 @@ getPromo();
 
 include_once("../config.php");
 include_once("../navbar.php");
-include_once("../assets/productos.php");
 include_once("funciones.php");
 
 if (getCantidadProductosCarritoCheckout() == 0) {
@@ -41,28 +40,21 @@ if (getCantidadProductosCarritoCheckout() == 0) {
             <table class="table">
                 <tbody>
                     <?php
-                    foreach(getCarritoCheckout() as $item) {
-                        $producto_encontrado;
-                        
-                        foreach ($productos as $producto) {
-                            if ($producto["id"] == $item["id"]) {
-                                $producto_encontrado = $producto;
-                                break;
-                            }
-                        }
-                        
+                    $carrito = getCarritoCheckout();
+
+                    foreach($carrito as $producto) {
                         echo "<tr>";
                         echo "<td><img src='" .$producto["imagen"] ."' border='0' width='80' /></td>";
                         echo "<td class='align-middle'>" .$producto["nombre"] ."</td>";
                         echo "<td class='align-middle'>$" .$producto["precio"] ."</td>";
-                        echo "<td class='align-middle'>x" .$item["cantidad"] ."</td>";
-                        echo "<td class='align-middle'>$" .($item["cantidad"] * $producto["precio"]) ."</td>";
+                        echo "<td class='align-middle'>x" .$producto["cantidad"] ."</td>";
+                        echo "<td class='align-middle'>$" .($producto["cantidad"] * $producto["precio"]) ."</td>";
                         echo "</tr>";
                     }
                     ?>
                     <tr>
                         <td colspan="3"><b>Suma Total a Pagar</b><td>
-                        <td><b>$<?php echo getSumaProductosCarritoCheckout($productos); ?></b></td>
+                        <td><b>$<?php echo getSumaProductosCarritoCheckout(); ?></b></td>
                     </tr>
                 </tbody>
             </table>            

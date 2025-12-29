@@ -37,20 +37,26 @@ function getCarousel() {
     echo $output;
 }
 
-function getProductos($productos, $filtrar, $promo) {
+function getProductos($filtrar, $promo) {
+    $conexion = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    
     if ($filtrar && $promo) {
-        $productos = array_filter($productos, fn($item) => $item["categoria"] == $filtrar && $item["promo"]);
+        $sql = "SELECT * FROM productos WHERE (categoria LIKE '" .$filtrar ."') AND (promo = 1)";
     } else if ($filtrar && !$promo) {
-        $productos = array_filter($productos, fn($item) => $item["categoria"] == $filtrar);
+        $sql = "SELECT * FROM productos WHERE (categoria LIKE '" .$filtrar ."')";
     } else if (!$filtrar && $promo) {
-        $productos = array_filter($productos, fn($item) => $item["promo"]);
+        $sql = "SELECT * FROM productos WHERE (promo = 1)";
+    } else {
+        $sql = "SELECT * FROM productos";
     }
 
+    $resultado = mysqli_query($conexion, $sql);
+    mysqli_close($conexion);
     $output = '<div class="container my-5">';
     $output .= '<div class="row">';
 
-    if (count($productos) > 0) {
-        foreach ($productos as $producto) {
+    if (mysqli_num_rows($resultado) > 0) {
+        while ($producto = $resultado->fetch_assoc()) {
             $output .= '<div class="col-md-3">
             <a href="../detail/index.php?id=' .$producto["id"] .'" class="text-decoration-none">
             <div class="card">

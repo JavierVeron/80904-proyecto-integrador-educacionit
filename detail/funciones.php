@@ -1,19 +1,10 @@
 <?php
 function getProducto($id) {
-    global $productos;
+    $conexion = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    $sql = "SELECT * FROM productos WHERE id = " .$id;
+    $resultado = mysqli_query($conexion, $sql);
+    $producto = mysqli_fetch_assoc($resultado);
+    mysqli_close($conexion);
 
-    // Opción #1 => utilizando array_filter
-    $producto = array_filter($productos, fn($item) => $item['id'] == $id); // Devuelve un array filtrado (en este caso devuelve 1 solo elemento)
-
-    // Opción #2 => utilizando un foreach
-    /* $producto ="";
-
-    foreach ($productos as $item) {
-        if ($item["id"] == $id) {
-            $producto = $item;
-            break;
-        }
-    } */
-
-    return reset($producto); // Obtiene el primer elemento del array
+    return $producto;
 }
