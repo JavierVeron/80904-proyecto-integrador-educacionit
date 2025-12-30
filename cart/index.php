@@ -6,6 +6,17 @@ getPromo();
 include_once("../config.php");
 include_once("../navbar.php");
 include_once("funciones.php");
+
+$accion = isset($_GET["accion"]) ? $_GET["accion"] : "";
+$id = isset($_GET["id"]) ? $_GET["id"] : 0;
+
+if ($accion == "vaciar_carrito") {
+    vaciarCarrito();
+    header("Location: index.php");
+} else if ($accion == "eliminar") {
+    eliminarProductoCarrito($id);
+    header("Location: index.php");
+}
 ?>
 <div class="container my-5">
     <div class="row">
@@ -17,6 +28,9 @@ include_once("funciones.php");
             ?>
             <table class="table">
                 <tbody>
+                    <tr>
+                        <td colspan="6" class="text-end"><a href="<?php echo URL_BASE ."/cart/index.php?accion=vaciar_carrito"; ?>" class='btn btn-danger btn-sm'>Vaciar Carrito</a></td></td>
+                    </tr>
                     <?php
                     $carrito = getCarrito();
 
@@ -27,7 +41,7 @@ include_once("funciones.php");
                         echo "<td class='align-middle'>$" .$producto["precio"] ."</td>";
                         echo "<td class='align-middle'>x" .$producto["cantidad"] ."</td>";
                         echo "<td class='align-middle'>$" .($producto["cantidad"] * $producto["precio"]) ."</td>";
-                        echo "<td class='align-middle text-end'><button class='btn btn-danger btn-sm'>Eliminar</button></td>";
+                        echo "<td class='align-middle text-end'><a href='" .URL_BASE ."/cart/index.php?id=" .$producto["id"] ."&accion=eliminar' class='btn btn-danger btn-sm'>Eliminar</a></td>";
                         echo "</tr>";
                     }
                     ?>
