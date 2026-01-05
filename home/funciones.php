@@ -37,17 +37,17 @@ function getCarousel() {
     echo $output;
 }
 
-function getProductos($filtrar, $promo) {
+function getProductos($filtrar=false, $promo=false) {
     $conexion = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     
     if ($filtrar && $promo) {
-        $sql = "SELECT * FROM productos WHERE (categoria LIKE '" .$filtrar ."') AND (promo = 1)";
+        $sql = "SELECT * FROM productos WHERE (categoria LIKE '" .$filtrar ."') AND (promo = 1) ORDER BY id";
     } else if ($filtrar && !$promo) {
-        $sql = "SELECT * FROM productos WHERE (categoria LIKE '" .$filtrar ."')";
+        $sql = "SELECT * FROM productos WHERE (categoria LIKE '" .$filtrar ."') ORDER BY id";
     } else if (!$filtrar && $promo) {
-        $sql = "SELECT * FROM productos WHERE (promo = 1)";
+        $sql = "SELECT * FROM productos WHERE (promo = 1) ORDER BY id";
     } else {
-        $sql = "SELECT * FROM productos";
+        $sql = "SELECT * FROM productos ORDER BY id";
     }
 
     $resultado = mysqli_query($conexion, $sql);

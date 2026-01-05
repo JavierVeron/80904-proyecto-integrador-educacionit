@@ -6,3 +6,11 @@ if (myCarouselElement) {
     touch: false
   })
 }
+
+function eliminarProducto(id) {
+    let confirmar = confirm("Desea eliminar el Producto #" + id + "?");
+
+    if (confirmar) {
+      location.href = "index.php?id=" + id + "&accion=eliminar";
+    }
+}

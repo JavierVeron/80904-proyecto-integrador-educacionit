@@ -5,7 +5,6 @@ getPromo();
 
 include_once("../../config.php");
 include_once("../../navbar.php");
-include_once("../../assets/productos.php");
 include_once("../../cart/funciones.php");
 
 ?>
@@ -27,29 +26,21 @@ include_once("../../cart/funciones.php");
             <body>
             <p><b>Detalle de tu Compra</b></p>
             <table cellpadding='5' cellspacing='5' border='0' style='border:1px solid #CCCCCC;'>";
+            $carrito = getCarrito();
 
-            foreach(getCarrito() as $item) {
-                $producto_encontrado;
-                
-                foreach ($productos as $producto) {
-                    if ($producto["id"] == $item["id"]) {
-                        $producto_encontrado = $producto;
-                        break;
-                    }
-                }
-                
+            foreach($carrito as $producto) {    
                 $contenido .= "<tr>";
-                $contenido .= "<td><img src='" .$producto_encontrado["imagen"] ."' border='0' width='80' /></td>";
-                $contenido .= "<td>" .$producto_encontrado["nombre"] ."</td>";
-                $contenido .= "<td>$" .$producto_encontrado["precio"] ."</td>";
-                $contenido .= "<td>x" .$item["cantidad"] ."</td>";
-                $contenido .= "<td>$" .($item["cantidad"] * $producto_encontrado["precio"]) ."</td>";
+                $contenido .= "<td><img src='" .$producto["imagen"] ."' border='0' width='80' /></td>";
+                $contenido .= "<td>" .$producto["nombre"] ."</td>";
+                $contenido .= "<td>$" .$producto["precio"] ."</td>";
+                $contenido .= "<td>x" .$producto["cantidad"] ."</td>";
+                $contenido .= "<td>$" .($producto["cantidad"] * $producto["precio"]) ."</td>";
                 $contenido .= "</tr>";
             }
 
             $contenido .= "<tr>";
             $contenido .= "<td colspan='4'>Suma Total</td>";
-            $contenido .= "<td><b>$" .getSumaProductosCarrito($productos) ."</b></td>";
+            $contenido .= "<td><b>$" .getSumaProductosCarrito() ."</b></td>";
             $contenido .= "</tr>";
             $contenido .= "</table>
             </body>
@@ -58,13 +49,14 @@ include_once("../../cart/funciones.php");
             //mail($email, $asunto, $mensaje, $headers); // Aquí se realiza el envío del email
 
             $conexion = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-            $total = getSumaProductosCarrito($productos);
+            $total = getSumaProductosCarrito();
             $fecha = date("Y-m-d H:i:s");
             $sql = "INSERT INTO pedidos (nombre, email, telefono, productos, total, fecha) VALUES ('$nombre', '$email', '$telefono', '" .json_encode($_SESSION["cart"]) ."', " .$total .", '" .$fecha ."')";
             //echo $sql;
             $resultado = mysqli_query($conexion, $sql);
 
             if ($resultado) {
+                vaciarCarrito();
                 echo "<h1 class='text-center fw-bold'>Gracias por tu Compra!</h1>";
                 echo '<div class="alert alert-success text-center" role="alert">El pedido se ha guardado correctamente!</div>';
             } else {
