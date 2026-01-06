@@ -81,3 +81,7 @@ function getProductos($filtrar=false, $promo=false) {
     
     echo $output; 
 }
+
+function validarSesion() {
+    return isset($_SESSION["usuario_nombre"]) ? true : false;
+}

@@ -29,13 +29,25 @@ include_once("cart/funciones.php");
             </ul>
         </div>
         <div class="col-md-3 text-end">
-            <button class="btn btn-light mx-1" title="LogIn">
-                <i class="bi bi-box-arrow-in-right"></i>
-            </button>
-            <button class="btn btn-light mx-1" title="Registrarte">
-                <i class="bi bi-person-plus"></i>
-            </button>
-            <a href="<?php echo URL_BASE; ?>/cart" class="btn btn-light position-relative">
+            <?php
+            if (validarSesion()) {
+                ?>
+                <a href="<?php echo URL_BASE; ?>/login/procesos/logout.php" class="btn btn-light mx-1" title="LogOut">
+                    <i class="bi bi-box-arrow-left"></i>
+                </a>
+                <a href="<?php echo URL_BASE; ?>/admin/index.php" class="btn btn-light mx-1" title="Admin">
+                    <i class="bi bi-person-plus"></i>
+                </a>
+                <?php
+            } else {
+                ?>
+                <a href="<?php echo URL_BASE; ?>/login" class="btn btn-light mx-1" title="LogIn">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                </a>
+                <?php
+            }
+            ?>
+            <a href="<?php echo URL_BASE; ?>/cart" class="btn btn-light mx-1 position-relative">
                 <i class="bi bi-cart"></i>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><?php echo getCantidadProductosCarrito(); ?></span>
             </a>
